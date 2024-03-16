@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  web:
+    container_name: user-server
+    build :
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/spring?autoReconnect=true
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - spring-db-network
+    depends_on:
+      - database
+
+  database:
+    container_name: user-database
+    image: mysql:8.0.27
+    environment:
+      DATABASE_HOST: docker-mysql
+      DATABASE_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE:  spring
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: root
+    networks:
+      - spring-db-network
+
+networks:
+  spring-db-network:
+    driver: bridge
