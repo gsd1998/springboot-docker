@@ -24,7 +24,7 @@ public class SpringdbApplication {
 		SpringApplication.run(SpringdbApplication.class, args);
 	}
 
-
+	//running on 9090
 	@PostMapping("/save-users")
 	public User saveUser(@RequestBody User user){
 		return userRepo.save(user);
