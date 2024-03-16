@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 8080:8080
+      - 9090:8080
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/spring?autoReconnect=true
       SPRING_DATASOURCE_USERNAME: admin
